@@ -1,7 +1,7 @@
 scalaVersion := "2.13.8"
 
-name         := "todo-api"
-organization := "ru.afanasev.todo"
+name         := "simple-crawler-api"
+organization := "ru.afanasev.2gis"
 version      := "0.0.1"
 
 val http4sVersion            = "0.23.10"
@@ -24,6 +24,7 @@ libraryDependencies += "io.circe"                   %% "circe-generic"          
 libraryDependencies += "io.circe"                   %% "circe-literal"                 % circeVersion
 libraryDependencies += "org.scalatest"              %% "scalatest"                     % scalaTestVersion         % Test
 libraryDependencies += "org.typelevel"              %% "cats-effect-testing-scalatest" % catsEffectTestingVersion % Test
+libraryDependencies += "io.estatico"                %% "newtype"                       % newTypeVersion
 
 scalacOptions ++= Seq(
   "-Ymacro-annotations",

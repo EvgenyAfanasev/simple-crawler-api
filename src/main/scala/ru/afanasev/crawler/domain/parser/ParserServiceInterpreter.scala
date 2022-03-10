@@ -10,6 +10,7 @@ import com.typesafe.scalalogging.Logger
 import org.jsoup.Jsoup
 
 import ru.afanasev.crawler.domain.parser.model.Result._
+import ru.afanasev.crawler.domain.parser.model.Url._
 import ru.afanasev.crawler.domain.parser.model._
 
 import scala.util.Try
@@ -25,7 +26,7 @@ class ParserServiceInterpreter[F[_] : Parallel : Sync](log: Logger) extends Pars
         }
       })
 
-  def parseUrl(url: Either[UrlAndResult, Url]): F[Result] = {
+  def parseUrl(url: Either[UrlAndResult, Valid]): F[Result] = {
     val result = (for {
       url <- EitherT.fromEither[F](url)
       title <- EitherT(getTitle(url.value))
