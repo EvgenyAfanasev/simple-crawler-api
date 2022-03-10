@@ -22,18 +22,18 @@ class ParserServiceInterpreter[F[_] : Parallel : Sync](log: Logger) extends Pars
       .map(result => result.foldLeft(Response.empty) { (acc, value) =>
         value match {
           case Success(value) => acc.copy(success = acc.success + value)
-          case Fail(value) => acc.copy(fail = acc.fail + value)
+          case Fail(value)    => acc.copy(fail = acc.fail + value)
         }
       })
 
   def parseUrl(url: Either[UrlAndResult, Valid]): F[Result] = {
     val result = (for {
-      url <- EitherT.fromEither[F](url)
+      url   <- EitherT.fromEither[F](url)
       title <- EitherT(getTitle(url.value))
     } yield title).value
 
     result.map(_.onError(err => log.debug(s"${err._1} can not processing [${err._2}]").asRight) match {
-      case Left(err) => Fail(err)
+      case Left(err)    => Fail(err)
       case Right(value) => Success(value)
     })
   }
