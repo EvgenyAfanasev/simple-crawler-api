@@ -1,11 +1,10 @@
-package ru.afanasev.crawler.domain.parser.interpreter
+package ru.afanasev.crawler.domain.parser
 
 import cats.effect.IO
 import cats.effect.testing.scalatest.AsyncIOSpec
 import com.typesafe.scalalogging.LazyLogging
 import org.scalatest.freespec.AsyncFreeSpec
 import org.scalatest.matchers.should.Matchers
-import ru.afanasev.crawler.domain.parser.ParserServiceInterpreter
 
 class ParserServiceSpec extends AsyncFreeSpec with AsyncIOSpec with Matchers with LazyLogging {
 
