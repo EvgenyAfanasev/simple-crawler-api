@@ -38,7 +38,7 @@ class ParserServiceInterpreter[F[_] : Parallel : Sync](log: Logger) extends Pars
     })
   }
 
-  def getTitle(url: String): F[Either[UrlAndResult, UrlAndResult]] = Sync[F].delay {
+  def getTitle(url: String): F[Either[UrlAndResult, UrlAndResult]] = Sync[F].blocking {
     Try {
       url ->
         Jsoup.connect(url)
